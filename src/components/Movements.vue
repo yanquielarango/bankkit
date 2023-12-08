@@ -1,27 +1,27 @@
 <template>
-    <div class="movements" v-for="transation in transations">
-        <div class="movements__row" v-for="(item, i) in transation.movements" >
+    <div class="movements" >
+        <div class="movements__row" v-for="(mov, i) in store.currentAccount.move"  >
           
-          <li   class="movements__type" :class="item > 0 ? 'movements__type--deposit' : 'movements__type--withdrawal'"   >{{ i + 1 }} {{ item > 0 ? "deposit" : "whithdrawal" }}</li>
-          <div class="movements__value"> {{item}} PLN</div> 
+          <li   class="movements__type"
+               :class="mov > 0 ? 'movements__type--deposit' : 'movements__type--withdrawal'"   >{{ i + 1 }} {{ mov > 0 ? "deposit" : "whithdrawal" }} 
+          </li>
+          <div class="movements__date"></div>
+          <div class="movements__value"> {{mov}} €</div> 
 
           
         </div>
-       movements__type--deposit
+      
     </div>
+
 
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { useTransationStore } from '@/store/transations';
 
-defineProps({
-  transations: {
-    type: Array,
-    required: true
-  } 
-})
+const store = useTransationStore()
 
+console.log(store.currentAccount)
 
 </script>
 

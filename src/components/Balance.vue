@@ -3,19 +3,24 @@
         <div>
           <p class="balance__label">Current balance</p>
           <p class="balance__date">
-            As of <span class="date">05/03/2037</span>
+            As of <span class="date">05/03/2023</span>
           </p>
         </div>
-        <p class="balance__value">0000 PLN</p>
+        <p class="balance__value">{{ store.total }} €</p>
       </div>
 </template>
 
 <script setup>
+import { useTransationStore } from '@/store/transations';
+
+const store = useTransationStore()
+
+
 
 </script>
 
 <style  scoped>
-    .balance {
+  .balance {
   grid-column: 1 / span 2;
   display: flex;
   align-items: flex-end;

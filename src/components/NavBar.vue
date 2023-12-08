@@ -1,33 +1,49 @@
 <template>
    <nav>
-      <p class="welcome">{{ isNoLogged ? 'Log in to get started' : 'Welcome Back Yanquiel'}}  </p>
+      <p class="welcome" v-if="!store.isLogged">Log in to get started  </p>
+      <p class="welcome" v-else>Welcome back, {{ name }} </p>
+
       <img src="../assets/logo.png" alt="Logo" class="logo" />
       <div class="login" >
         <input
           type="text"
           placeholder="user"
           class="login__input login__input--user"
+          v-model="form.username"
         />
-        <!-- In practice, use type="password" -->
+       
         <input
           type="password"
           placeholder="PIN"
           maxlength="4"
           class="login__input login__input--pin"
+          v-model="form.pin"
         />
-        <button class="login__btn" @click="$emit('@custom-toggle')">&rarr;</button>
+        <button class="login__btn" @click="add" >&rarr;</button>
       </div>
     </nav>
 </template>
 
 <script setup>
-defineProps({
-  isNoLogged: {
-    type: Boolean,
-    required: true
-  }
- })
- defineEmits(['@custom-toggle'])
+import { reactive,ref} from 'vue'
+import { useTransationStore } from '@/store/transations';
+
+const store = useTransationStore()
+
+const form = reactive({
+  username: '',
+  pin: ''
+})
+
+const add = () => {
+  store.login(form)
+  name.value = store.currentAccount.owner?.split(' ')[0]
+
+}
+
+
+
+let  name = ref()
 
 </script>
 

@@ -1,17 +1,21 @@
 <template>
     <div class="summary">
         <p class="summary__label">In</p>
-        <p class="summary__value summary__value--in">0000€</p>
+        <p class="summary__value summary__value--in">{{ store.income }} €</p>
         <p class="summary__label">Out</p>
-        <p class="summary__value summary__value--out">0000€</p>
+        <p class="summary__value summary__value--out">{{ store.expense }} €</p>
         <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p>
+        <p class="summary__value summary__value--interest">0000 €</p>
         <button class="btn--sort">&downarrow; SORT</button>
     </div>
 
 </template>
 
 <script setup>
+import { useTransationStore } from '@/store/transations';
+
+const store = useTransationStore()
+
 
 </script>
 
@@ -32,7 +36,7 @@
 }
 
 .summary__value {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-right: 2rem;
 }
 
@@ -49,7 +53,7 @@
   margin-left: auto;
   border: none;
   background: none;
-  font-size: 1rem;
+  font-size: .8rem;
   font-weight: 500;
   cursor: pointer;
 }
